@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<!--
+  index.html — Ye file webpage ka STRUCTURE (skeleton) hai.
+  HTML browser ko batata hai KYA dikhana hai (text, buttons, sections).
+  
+  ISKO PADHNE KA TARIKA:
+  - < > ke andar jo bhi hota hai use "tag" kehte hain
+  - Zyada tar tags ke ek opening <tag> aur ek closing </tag> hota hai
+  - "class=" aur "id=" naam hote hain jo hum elements ko dete hain
+    taaki CSS (style.css) unko style kar sake aur JS (script.js) unko control kar sake
+-->
+<html lang="en">
+<head>
+  <!-- <head> section page par DIKHTA NAHI hai.
+       Isme sirf settings aur dusri files ke links hote hain. -->
+
+  <!-- Ye browser ko batata hai ki UTF-8 characters use karo (sab languages support karta hai) -->
+  <meta charset="UTF-8" />
+
+  <!-- Ye page ko mobile phone par sahi dikhata hai -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Ye text browser ke tab par dikhta hai -->
+  <title>Raunak Raj — Cybersecurity Analyst &amp; Digital Forensics Enthusiast</title>
+
+  <!-- Google Fonts load karo internet se (Playfair Display + DM Sans) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Hamari CSS file ka link — yahin sab styling/colors/layout rehta hai -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+<!-- <body> woh sab hai jo page par DIKHTA hai -->
+
+<!-- =====================================================
+     NAVIGATION BAR
+     Ye top par fix menu hai, har page par dikhta hai.
+     CSS me "position:fixed" isko scroll karte time bhi visible rakhta hai.
+     ===================================================== -->
+<nav>
+  <!-- Logo left side par -->
+  <div class="nav-logo">RR</div>
+
+  <!-- Menu links right side par -->
+  <!-- <ul> = list, <li> = list ka ek item, <a> = link -->
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certificates</a></li>
+    <li><a href="#achievements">Awards</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li>
+      <!-- Green resume download button -->
+      <!-- "download" attribute click karte hi PDF download kar dega -->
+      <a href="resume.pdf" download class="nav-resume-btn">
+        <!-- SVG = code se bana hua chhota icon (download arrow icon) -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Resume
+      </a>
+    </li>
+  </ul>
+</nav>
+
+
+<!-- =====================================================
+     HERO SECTION
+     Ye pehla section hai jo visitor ko dikhta hai (full screen).
+     id="hero" se CSS isko #hero { } se target karta hai
+     ===================================================== -->
+<section id="hero">
+  <div class="hero-inner">
+
+    <!-- LEFT COLUMN: Naam, tagline, buttons, social links -->
+    <div>
+      <!-- Top par chhota proof badge -->
+      <div class="hero-proof-bar">
+        <span class="dot"></span>
+        Forensics toolkit deployed at IFSO, Delhi Police — Currently used in live investigations
+      </div>
+
+      <!-- Main heading — bada naam -->
+      <h1 class="hero-name">Raunak Raj</h1>
+
+      <!-- Chhota description line -->
+      <p class="hero-tagline"><strong>Cybersecurity Analyst · Digital Forensics Enthusiast· SOC &amp; NOC </strong></p>
+
+      <!-- Role tag chips (chhote green labels) -->
+      <div class="hero-roles">
+        <span class="tag-chip">SOC Analyst</span>
+        <span class="tag-chip">NOC Engineer</span>
+        <span class="tag-chip">Cybersecurity Analyst</span>
+        <span class="tag-chip">Digital Forensic Enthusiast</span>
+      </div>
+
+      <!-- Action buttons ki row -->
+      <div class="hero-btns">
+        <!-- btn-primary = solid green button | btn-outline = border wala button | btn-ghost = plain border -->
+        <a href="#projects" class="btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          View Projects
+        </a>
+        <a href="resume.pdf" download class="nav-resume-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Resume
+        </a>
+        <a href="#contact" class="btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Contact
+        </a>
+      </div>
+
+      <!-- Social media links ki row -->
+      <div class="hero-socials">
+        <a href="https://github.com/Roxie79-s" target="_blank" class="hero-social-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+        <a href="https://linkedin.com/in/raunak-raj-9227732aa" target="_blank" class="hero-social-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="mailto:shahiraunak8@gmail.com" class="hero-social-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email
+        </a>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: "Real-World Proof" card -->
+    <div class="hero-card">
+      <div class="hero-card-title">Real-World Proof</div>
+
+      <!-- Har proof-item = icon box + label + value -->
+      <div class="proof-items">
+        <div class="proof-item">
+          <div class="proof-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div>
+            <div class="proof-label">Deployed At</div>
+            <div class="proof-val">NCFL — IFSO, Delhi Police (MHA)</div>
+          </div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div>
+            <div class="proof-label">Active Investigations</div>
+            <div class="proof-val">Live Cybercrime Cases</div>
+          </div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+          <div>
+            <div class="proof-label">Internship</div>
+            <div class="proof-val">SOC & Application Security · Cybersecurity · Digital Forensics</div>
+          </div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <div>
+            <div class="proof-label">Certification</div>
+            <div class="proof-val">ISC2 Certified in Cybersecurity</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- "Open To" availability tags card ke bottom me -->
+      <div class="hero-avail">
+        <div class="hero-avail-label">Open To</div>
+        <div class="hero-avail-tags">
+          <span class="avail-tag">SOC</span>
+          <span class="avail-tag">NOC</span>
+          <span class="avail-tag">Digital Forensics</span>
+          <span class="avail-tag">Info Security Analyst</span>
+          <span class="avail-tag">IT Support / IT Engineer</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =====================================================
+     FEATURED WORK SECTION
+     Dark green banner jo main project dikhata hai.
+     ===================================================== -->
+<section id="featured">
+  <div class="featured-inner">
+    <!-- Bada green card -->
+    <div class="featured-card">
+      <!-- LEFT: Text content -->
+      <div>
+        <div class="featured-eyebrow">Featured Work — Government Deployment</div>
+        <div class="featured-title">WinLive Forensic Suite</div>
+        <div class="featured-sub">Deployed in production at NCFL-IFSO, Delhi Police · I4C — Ministry of Home Affairs</div>
+        <!-- Bullet points list -->
+        <ul class="featured-bullets">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Built to replace a 46-tool manual workflow — now a single Python pipeline for RAM acquisition, browser artifacts, and registry hives
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            WinPmem kernel driver integration for volatile memory capture — full Volatility 2/3 compatibility
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            MD5/SHA-256 chain-of-custody reports used directly in Delhi Police prosecution files
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Reduced live evidence preparation time by ~70%; in active use within first month of deployment
+          </li>
+        </ul>
+      </div>
+
+      <!-- RIGHT: Stat boxes + button -->
+      <div class="featured-right">
+        <div class="feat-stat">
+          <span class="feat-stat-val">~70%</span>
+          <div class="feat-stat-lbl">Reduction in evidence prep time</div>
+        </div>
+        <div class="feat-stat">
+          <span class="feat-stat-val">Currently in Used</span>
+          <div class="feat-stat-lbl">Active law enforcement cases</div>
+        </div>
+        <div class="feat-stat">
+          <span class="feat-stat-val">100</span>
+          <div class="feat-stat-lbl">Filesystem events per acquisition</div>
+        </div>
+        <a href="#projects" class="feat-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          See All Projects
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     ABOUT SECTION
+     ===================================================== -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">Who I Am</div>
+    <h2 class="section-title">About Me</h2>
+    <div class="section-divider"></div>
+
+    <!-- Two-column layout: photo left, text right -->
+    <div class="about-grid">
+
+      <!-- LEFT: Profile photo -->
+      <div>
+        <img src="photo.jpg" alt="Raunak Raj" class="about-photo-placeholder" />
+      </div>
+
+      <!-- RIGHT: Saara about text -->
+      <div>
+        <!-- Chhoti vertical green-gold accent line -->
+        <div class="about-accent"></div>
+
+        <!-- Teen chhote info pillars ek row me -->
+        <div class="about-3col">
+          <div class="about-pillar">
+            <div class="about-pillar-label">Who I Am</div>
+            <div class="about-pillar-text">Final-year BCA (Cyber Security &amp; Forensics) student. 8.73 CGPA. Production-grade security tooling built before graduation.</div>
+          </div>
+          <div class="about-pillar">
+            <div class="about-pillar-label">What I Build</div>
+            <div class="about-pillar-text">Forensic acquisition pipelines, offensive security platforms, SOC automation tools — shipped and used in real investigations.</div>
+          </div>
+          <div class="about-pillar">
+            <div class="about-pillar-label">What Sets Me Apart</div>
+            <div class="about-pillar-text">My forensics toolkit is deployed at Delhi Police. It runs in live criminal prosecutions — not just CTF writeups.</div>
+          </div>
+        </div>
+
+        <!-- Main about paragraph -->
+        <p class="about-body">I operate across the full security spectrum: red team exploitation with Metasploit, Burp Suite, and OWASP ZAP; blue team detection with Splunk SIEM, Snort, and MITRE ATT&amp;CK-aligned triage; and digital forensics with Volatility3, MFT parsing, and court-admissible evidence packaging. I build systems ready for SOC floors, NOC environments, and law enforcement — not just academic settings.</p>
+
+        <!-- Mission aur Vision cards side by side -->
+        <div class="about-mv">
+          <div class="mv-card">
+            <div class="mv-label">Mission</div>
+            <div class="mv-text">Engineer security systems that hold up in court, under attack, and at national scale.</div>
+          </div>
+          <div class="mv-card">
+            <div class="mv-label">Vision</div>
+            <div class="mv-text">Lead offensive security and forensic engineering at the intersection of AI and real-world adversarial operations.</div>
+          </div>
+        </div>
+
+        <!-- Quick navigation links ki row -->
+        <div class="about-quick-links">
+          <a href="#experience" class="ql-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+            Experience
+          </a>
+          <a href="#education" class="ql-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            Education
+          </a>
+          <a href="#projects" class="ql-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            Projects
+          </a>
+          <a href="#skills" class="ql-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+            Skills
+          </a>
+          <a href="#certifications" class="ql-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Certs
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     EXPERIENCE SECTION
+     Timeline layout, left side ek vertical green line.
+     ===================================================== -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">Career</div>
+    <h2 class="section-title">Work Experience</h2>
+    <div class="section-divider"></div>
+
+    <!-- Gold info banner timeline ke upar -->
+    <div class="training-banner">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      <div>
+        <div class="training-banner-title">Training — Hands-on SOC &amp; VAPT Program</div>
+        <div class="training-banner-body">Intensive practical training covering SIEM alert triage, threat hunting, incident response, OWASP Top 10 exploitation, and MITRE ATT&amp;CK / NIST CSF application in live red-vs-blue simulations.</div>
+      </div>
+    </div>
+
+    <!-- Timeline wrapper — CSS ::before line draw karta hai -->
+    <div class="exp-timeline">
+
+      <!-- EXPERIENCE ITEM 1 -->
+      <div class="exp-item">
+        <!-- Timeline line par green dot -->
+        <div class="exp-dot"></div>
+        <div class="exp-card">
+          <!-- Meta info row: badge, date, location -->
+          <div class="exp-meta">
+            <span class="exp-badge">Government Internship</span>
+            <span class="exp-duration">Dec 2023 – Apr 2024</span>
+            <span class="exp-location-tag">Delhi</span>
+          </div>
+          <div class="exp-role">Cybersecurity &amp; Digital Forensic Intern</div>
+          <div class="exp-company">I4C NCFL-IFSO, Cyber Special Unit — Ministry of Home Affairs</div>
+          <!-- Bullet point responsibilities -->
+          <ul class="exp-list">
+            <li>Engineered WinLive Forensic Suite (WLFS) — consolidated 46-tool manual workflow into a single Python pipeline for RAM acquisition, browser artifacts, and registry hives</li>
+            <li>Automated volatile memory capture on live suspect systems using WinPmem kernel driver, producing Volatility 2/3-compatible forensic images</li>
+            <li>Identified 30+ IOCs across active cybercrime investigations via live-system forensic triage</li>
+            <li>Produced MD5/SHA-256-verified timeline reports used directly in Delhi Police prosecution files</li>
+          </ul>
+          <!-- Gold achievements block card ke andar -->
+          <div class="exp-ach-block">
+            <div class="exp-ach-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Key Achievements
+            </div>
+            <ul class="exp-ach-list">
+              <li>Reduced live evidence preparation time by ~70%; deployed across Delhi Police Special Cell — NCFL-IFSO active investigations</li>
+              <li>Received formal Letter of Appreciation from NCFL-IFSO, Delhi Police — one of select interns commended for production-level forensic impact</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXPERIENCE ITEM 2 -->
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-card">
+          <div class="exp-meta">
+            <span class="exp-badge">Remote Contract</span>
+            <span class="exp-duration">Jul 2024 – Oct 2024</span>
+            <span class="exp-location-tag">Bengaluru (Remote)</span>
+          </div>
+          <div class="exp-role">Security Administration Associate — L1</div>
+          <div class="exp-company">Infotact Solution</div>
+          <ul class="exp-list">
+            <li>Deployed and tuned a Snort-based NIDS/IPS protecting a 100+ endpoint enterprise network</li>
+            <li>Engineered a custom Python stateful firewall with granular ACL rules across 6 network segments</li>
+            <li>Triaged 30+ daily Splunk SIEM alerts through log correlation and playbook-aligned categorisation</li>
+            <li>Escalated validated P1/P2 threats to senior analysts with consistent sub-15-minute MTTE</li>
+          </ul>
+          <div class="exp-ach-block">
+            <div class="exp-ach-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Key Achievements
+            </div>
+            <ul class="exp-ach-list">
+              <li>Detected and flagged 200+ intrusion attempts; reduced mean analyst escalation time by ~40%</li>
+              <li>Processed 2,500+ alerts across the engagement with zero missed critical incidents and zero confirmed breaches during deployment</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     EDUCATION SECTION
+     ===================================================== -->
+<section id="education">
+  <div class="container">
+    <div class="section-label">Academic Background</div>
+    <h2 class="section-title">Education</h2>
+    <div class="section-divider"></div>
+
+    <!-- Single education card jisme icon, details, aur stat boxes hain -->
+    <div class="edu-compact">
+      <!-- Sabse left wala column: sirf icon -->
+      <div class="edu-icon-col">
+        <div class="edu-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+      </div>
+      <!-- Beech wala column: degree ki info -->
+      <div class="edu-main">
+        <div class="edu-degree">Bachelor of Computer Applications (BCA)</div>
+        <div class="edu-spec">Cyber Security &amp; Forensics</div>
+        <div class="edu-inst">BBD University, Lucknow, UP</div>
+        <div class="edu-meta-row">Full-time &nbsp;·&nbsp; 2023 – 2026</div>
+        <ul class="edu-points">
+          <li>CGPA: 8.73/10 — Top 10% of department</li>
+          <li>Discipline Head, Lakshya (Student Technical Body) — directed security awareness programmes; coordinated 3+ annual events</li>
+          <li>Core coursework: Network Security, Digital Forensics, Ethical Hacking, Cryptography, Cyber Law &amp; GRC</li>
+        </ul>
+      </div>
+      <!-- Right side wala column: stat boxes -->
+      <div class="edu-stats-col">
+        <div class="edu-stat-box"><span class="edu-stat-val">8.73</span><div class="edu-stat-lbl">CGPA / 10</div></div>
+        <div class="edu-stat-box"><span class="edu-stat-val">Top 10%</span><div class="edu-stat-lbl">Dept. Rank</div></div>
+        <div class="edu-stat-box"><span class="edu-stat-val">2026</span><div class="edu-stat-lbl">Graduating</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     PROJECTS SECTION
+     Har project ek card hai jisme top color bar, badges,
+     2-column problem/outcome boxes, aur tech chips hain.
+     
+     NOTE: GitHub button har project se HATA DIYA gaya hai
+     (jaisa bola gaya tha — "GitHub nahi rakhna").
+     ===================================================== -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">What I've Built</div>
+    <h2 class="section-title">Projects</h2>
+    <div class="section-divider"></div>
+
+    <div class="proj-grid">
+
+      <!-- PROJECT 1: NebulaX -->
+      <div class="proj-card">
+        <!-- Card ke top par thin gradient line -->
+        <div class="proj-card-top"></div>
+        <div class="proj-card-body">
+          <!-- Badge row -->
+          <div class="proj-badges">
+            <span class="tag-chip">Full-Stack Security Platform</span>
+            <span class="gold-chip">Ongoing</span>
+          </div>
+          <!-- Title row — GitHub button hata diya, sirf title/subtitle hai -->
+          <div class="proj-header">
+            <div>
+              <div class="proj-title">NebulaX — AI-Augmented Penetration Testing Engine</div>
+              <div class="proj-sub">MERN Stack · ReAct AI Decision Engine · 12-Phase Kill Chain</div>
+            </div>
+          </div>
+          <!-- Two-column: problem + outcomes -->
+          <div class="proj-grid-2col">
+            <div class="proj-problem">
+              <div class="proj-problem-label">Problem Solved</div>
+              <div class="proj-problem-text">Multi-day manual penetration tests are slow and analyst-dependent. NebulaX compresses a full recon-to-report cycle into one automated run under 90 minutes — no human handoff required.</div>
+            </div>
+            <div class="proj-outcomes-block">
+              <div class="proj-outcomes-label">Key Outcomes</div>
+              <ul class="proj-outcomes-list">
+                <li>50+ vulnerability classes per target in a single run</li>
+                <li>12-phase attack chain — fully autonomous sequencing</li>
+                <li>CVSS v3.1 scoring via NIST NVD, VirusTotal, AbuseIPDB</li>
+                <li>PDF report generated in under 60 seconds post-scan</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Contribution box -->
+          <div class="proj-contribution">
+            <div class="proj-contribution-label">My Contribution</div>
+            <div class="proj-contribution-text">Designed and built the entire platform solo — from the React frontend and Node/Express API layer to the Python-based AI orchestration engine and Puppeteer report pipeline. Integrated 6 external threat intelligence APIs.</div>
+          </div>
+          <!-- Technology chips ki row -->
+          <div class="proj-tech-row">
+            <span class="tech-chip">React</span><span class="tech-chip">Node.js</span><span class="tech-chip">Express.js</span><span class="tech-chip">MongoDB</span><span class="tech-chip">Python</span><span class="tech-chip">Nmap</span><span class="tech-chip">OWASP ZAP</span><span class="tech-chip">Sublist3r</span><span class="tech-chip">Puppeteer</span><span class="tech-chip">VirusTotal API</span><span class="tech-chip">NIST NVD API</span><span class="tech-chip">JWT</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 2: WinLive Forensic Suite -->
+      <div class="proj-card">
+        <div class="proj-card-top"></div>
+        <div class="proj-card-body">
+          <div class="proj-badges">
+            <span class="tag-chip">Digital Forensics Tool</span>
+            <span class="gold-chip">Production — IFSO Delhi Police</span>
+          </div>
+          <!-- Title row — GitHub button hata diya -->
+          <div class="proj-header">
+            <div>
+              <div class="proj-title">WinLive Forensic Suite (WLFS)</div>
+              <div class="proj-sub">Python / PySide6 · Dec 2023 – Apr 2024</div>
+            </div>
+          </div>
+          <div class="proj-grid-2col">
+            <div class="proj-problem">
+              <div class="proj-problem-label">Problem Solved</div>
+              <div class="proj-problem-text">Live forensic acquisition at IFSO required 46 separate tools. Manual workflow was slow and error-prone under operational pressure. A single unified pipeline was needed that produces court-admissible output.</div>
+            </div>
+            <div class="proj-outcomes-block">
+              <div class="proj-outcomes-label">Key Outcomes</div>
+              <ul class="proj-outcomes-list">
+                <li>Deployed in production — active law enforcement cases</li>
+                <li>WinPmem kernel RAW memory capture, Volatility 2/3 ready</li>
+                <li>Reconstructs 100,000+ filesystem events per acquisition</li>
+                <li>MD5/SHA-256 chain-of-custody meets court standards</li>
+              </ul>
+            </div>
+          </div>
+          <div class="proj-contribution">
+            <div class="proj-contribution-label">My Contribution</div>
+            <div class="proj-contribution-text">Built entirely from scratch during my government internship. Designed the multi-threaded acquisition engine, WinPmem integration, Timeline Correlation module, and the PySide6 GUI — deployed in a Ministry of Home Affairs unit within 4 months.</div>
+          </div>
+          <div class="proj-tech-row">
+            <span class="tech-chip">Python</span><span class="tech-chip">PySide6</span><span class="tech-chip">Volatility2/3</span><span class="tech-chip">WinPmem</span><span class="tech-chip">MFT Parsing</span><span class="tech-chip">Registry Analysis</span><span class="tech-chip">Autopsy</span><span class="tech-chip">SQLite</span><span class="tech-chip">MD5/SHA-256</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 3: LSB Steganography -->
+      <div class="proj-card">
+        <div class="proj-card-top"></div>
+        <div class="proj-card-body">
+          <div class="proj-badges">
+            <span class="tag-chip">Security Research</span>
+            <span class="gold-chip">Red Team Tool</span>
+          </div>
+          <!-- Title row — GitHub button hata diya -->
+          <div class="proj-header">
+            <div>
+              <div class="proj-title">LSB Steganography Offensive Security Tool</div>
+              <div class="proj-sub">Python · Academic Research Project</div>
+            </div>
+          </div>
+          <div class="proj-grid-2col">
+            <div class="proj-problem">
+              <div class="proj-problem-label">Problem Solved</div>
+              <div class="proj-problem-text">Signature-based AV systems fail to detect steganographic covert channels. This tool demonstrates and validates that gap — exposing how advanced threat actors exfiltrate payloads below conventional detection thresholds.</div>
+            </div>
+            <div class="proj-outcomes-block">
+              <div class="proj-outcomes-label">Key Outcomes</div>
+              <ul class="proj-outcomes-list">
+                <li>0% detection rate against ClamAV and Windows Defender</li>
+                <li>Confirmed bypass viability in signature-based AV environments</li>
+                <li>Payload extraction preserves full metadata integrity</li>
+                <li>Validates covert channels below IDS signature thresholds</li>
+              </ul>
+            </div>
+          </div>
+          <div class="proj-contribution">
+            <div class="proj-contribution-label">My Contribution</div>
+            <div class="proj-contribution-text">Designed the full LSB encoding/decoding engine, built live system enumeration and network mapping modules, and ran detection testing against production AV environments. Used to demonstrate real offensive gaps in academic and red team contexts.</div>
+          </div>
+          <div class="proj-tech-row">
+            <span class="tech-chip">Python</span><span class="tech-chip">LSB Steganography</span><span class="tech-chip">Bash</span><span class="tech-chip">Network Mapping</span><span class="tech-chip">ClamAV</span><span class="tech-chip">Scapy</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     SKILLS SECTION
+     2-column grid of skill category cards with progress bars.
+     ===================================================== -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">Technical Proficiency</div>
+    <h2 class="section-title">Skills</h2>
+    <div class="section-divider"></div>
+    <div class="skills-grid">
+
+      <!-- SKILL CARD: SOC / Blue Team -->
+      <div class="skill-cat">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div><div class="skill-cat-name">SOC / Blue Team</div><div class="skill-cat-level">85% Proficiency</div></div>
+        </div>
+        <!-- Har skill bar: left side naam, right side %, fir bar -->
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">Splunk SIEM &amp; Log Correlation</span><span class="skill-bar-pct">87%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:87%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">Threat Detection &amp; Hunting</span><span class="skill-bar-pct">84%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:84%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">Incident Response &amp; Containment</span><span class="skill-bar-pct">83%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:83%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">MITRE ATT&amp;CK Kill Chain</span><span class="skill-bar-pct">82%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:82%"></div></div></div>
+        <!-- Bars ke neeche chhote skill tags ki row -->
+        <div class="skill-tags-row">
+          <span class="skill-tag">Windows Event Log Analysis</span>
+          <span class="skill-tag">Alert Triage</span>
+          <span class="skill-tag">Playbook-Aligned Response</span>
+          <span class="skill-tag">Snort IDS/IPS</span>
+          <span class="skill-tag">P1/P2 Escalation</span>
+          <span class="skill-tag">Wireshark</span>
+        </div>
+      </div>
+
+      <!-- SKILL CARD: NOC -->
+      <div class="skill-cat">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
+          <div><div class="skill-cat-name">NOC — Network Operations</div><div class="skill-cat-level">80% Proficiency</div></div>
+        </div>
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">Snort NIDS/IPS Deployment &amp; Tuning</span><span class="skill-bar-pct">83%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:83%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">Firewall ACL Engineering</span><span class="skill-bar-pct">80%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">Network Monitoring &amp; Troubleshooting</span><span class="skill-bar-pct">80%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">Network Segmentation (ACL)</span><span class="skill-bar-pct">78%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:78%"></div></div></div>
+        <div class="skill-tags-row">
+          <span class="skill-tag">TCP/IP</span>
+          <span class="skill-tag">DNS</span>
+          <span class="skill-tag">Ports &amp; Protocols</span>
+          <span class="skill-tag">Python Stateful Firewall</span>
+          <span class="skill-tag">Endpoint Protection</span>
+          <span class="skill-tag">Wireshark</span>
+        </div>
+      </div>
+
+      <!-- SKILL CARD: Digital Forensics -->
+      <div class="skill-cat">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div><div class="skill-cat-name">Digital Forensics &amp; IR</div><div class="skill-cat-level">92% Proficiency</div></div>
+        </div>
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">Volatility 2/3 — Memory Analysis</span><span class="skill-bar-pct">93%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:93%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">Evidence Handling &amp; Timeline Analysis</span><span class="skill-bar-pct">91%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:91%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">MFT Parsing &amp; File Recovery</span><span class="skill-bar-pct">90%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">Registry &amp; Browser Artifact Analysis</span><span class="skill-bar-pct">88%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:88%"></div></div></div>
+        <div class="skill-tags-row">
+          <span class="skill-tag">WinPmem</span>
+          <span class="skill-tag">Autopsy</span>
+          <span class="skill-tag">Malware Triage</span>
+          <span class="skill-tag">IOC Identification</span>
+          <span class="skill-tag">MD5/SHA-256 Verification</span>
+          <span class="skill-tag">Chain-of-Custody Reporting</span>
+        </div>
+      </div>
+
+      <!-- SKILL CARD: Information Security Analyst -->
+      <div class="skill-cat">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div>
+          <div><div class="skill-cat-name">Information Security Analyst</div><div class="skill-cat-level">90% Proficiency</div></div>
+        </div>
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">Penetration Testing / VAPT</span><span class="skill-bar-pct">90%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">Metasploit &amp; Burp Suite</span><span class="skill-bar-pct">88%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:88%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">Web App Security — OWASP Top 10</span><span class="skill-bar-pct">86%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:86%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">Active Directory Enumeration</span><span class="skill-bar-pct">82%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:82%"></div></div></div>
+        <div class="skill-tags-row">
+          <span class="skill-tag">OWASP ZAP</span>
+          <span class="skill-tag">SQL Injection</span>
+          <span class="skill-tag">XSS</span>
+          <span class="skill-tag">Privilege Escalation</span>
+          <span class="skill-tag">Lateral Movement</span>
+          <span class="skill-tag">Shodan</span>
+          <span class="skill-tag">theHarvester</span>
+          <span class="skill-tag">Sublist3r</span>
+          <span class="skill-tag">API Security Testing</span>
+        </div>
+      </div>
+
+      <!-- SKILL CARD: Threat Intelligence -->
+      <div class="skill-cat">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div><div class="skill-cat-name">Threat Intelligence &amp; Frameworks</div><div class="skill-cat-level">80% Proficiency</div></div>
+        </div>
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">MITRE ATT&amp;CK &amp; Cyber Kill Chain</span><span class="skill-bar-pct">83%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:83%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">OSINT &amp; IOC Enrichment</span><span class="skill-bar-pct">82%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:82%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">NIST CSF &amp; CVSS v3.1</span><span class="skill-bar-pct">80%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%"></div></div></div>
+        <div class="skill-tags-row">
+          <span class="skill-tag">VirusTotal</span>
+          <span class="skill-tag">AbuseIPDB</span>
+          <span class="skill-tag">Threat Actor Profiling</span>
+          <span class="skill-tag">Zero Trust Architecture</span>
+          <span class="skill-tag">GRC Fundamentals</span>
+          <span class="skill-tag">Cloud Security (AWS/Azure)</span>
+        </div>
+      </div>
+
+      <!-- SKILL CARD: IT Support / IT Engineer -->
+      <div class="skill-cat">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <div><div class="skill-cat-name">IT Support / IT Engineer</div><div class="skill-cat-level">78% Proficiency</div></div>
+        </div>
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">Python &amp; Bash Scripting</span><span class="skill-bar-pct">82%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:82%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">Node.js / REST APIs</span><span class="skill-bar-pct">78%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:78%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-bar-top"><span class="skill-bar-name">System Administration</span><span class="skill-bar-pct">76%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:76%"></div></div></div>
+        <div class="skill-tags-row">
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Express.js</span>
+          <span class="skill-tag">PySide6</span>
+          <span class="skill-tag">JWT</span>
+          <span class="skill-tag">Puppeteer</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     CERTIFICATIONS SECTION
+     
+     NOTE: Images ab class="cert-img-slot" use kar rahi hain
+     aur openImage() function se click karne par zoom hoti hain.
+     CSS me image proper full-size dikhne ka fix kiya gaya hai.
+     ===================================================== -->
+<section id="certifications">
+  <div class="container">
+    <div class="section-label">Credentials</div>
+    <h2 class="section-title">Certifications</h2>
+    <div class="section-divider"></div>
+    <div class="cert-groups">
+
+      <!-- GROUP 1: Cybersecurity certs -->
+      <div>
+        <!-- Group label, right side line automatically extend hoti hai -->
+        <div class="cert-group-label">Cybersecurity</div>
+        <div class="cert-row">
+          <div class="cert-card">
+            <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div>
+              <div class="cert-name">Certified in Cybersecurity (CC)</div>
+              <div class="cert-issuer">ISC2</div>
+              <div class="cert-why">Proves foundational cybersecurity competency — industry-recognised entry credential.</div>
+              <img src="cert-isc2.jpg" alt="ISC2 Certified in Cybersecurity" class="cert-img-slot" onclick="openImage('cert-isc2.jpg')" />
+            </div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div>
+              <div class="cert-name">Cybersecurity for Businesses, Fundamental Edition</div>
+              <div class="cert-issuer">Industry Certification</div>
+              <div class="cert-why">Business-context security awareness — relevant for analyst and GRC roles.</div>
+              <img src="cert-data-funda.jpg" alt="Cybersecurity for Businesses" class="cert-img-slot" onclick="openImage('cert-data-funda.jpg')" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GROUP 2: SOC & Operations certs -->
+      <div>
+        <div class="cert-group-label">SOC &amp; Operations</div>
+        <div class="cert-row">
+          <div class="cert-card">
+            <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+            <div>
+              <div class="cert-name">SOC in Practice</div>
+              <div class="cert-issuer">IBM</div>
+              <div class="cert-why">Proves practical SOC operations knowledge — directly applicable to analyst roles.</div>
+              <img src="cert-soc-practice.jpg" alt="SOC in Practice" class="cert-img-slot" onclick="openImage('cert-soc-practice.jpg')" />
+            </div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+            <div>
+              <div class="cert-name">Fundamentals of Artificial Intelligence</div>
+              <div class="cert-issuer">IBM</div>
+              <div class="cert-why">Relevant for AI-augmented security tooling — supports NebulaX AI engine work.</div>
+              <img src="cert-ai-funda.jpg" alt="Fundamentals of AI IBM" class="cert-img-slot" onclick="openImage('cert-ai-funda.jpg')" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     ACHIEVEMENTS SECTION
+     ===================================================== -->
+<section id="achievements">
+  <div class="container">
+    <div class="section-label">Recognition</div>
+    <h2 class="section-title">Achievements</h2>
+    <div class="section-divider"></div>
+    <p style="font-size:.9rem;color:var(--muted);margin-bottom:36px;font-style:italic;">From a government commendation at Delhi Police to national-level excellence awards — built on production impact, not just credentials.</p>
+
+    <!-- Bade numbers ki row -->
+    <div class="ach-stats-row">
+      <div class="ach-stat"><span class="ach-stat-num">2+</span><span class="ach-stat-lbl">Years Experience</span></div>
+      <div class="ach-stat"><span class="ach-stat-num">5+</span><span class="ach-stat-lbl">Certifications</span></div>
+      <div class="ach-stat"><span class="ach-stat-num">3</span><span class="ach-stat-lbl">Projects</span></div>
+      <div class="ach-stat"><span class="ach-stat-num">3</span><span class="ach-stat-lbl">Awards</span></div>
+    </div>
+
+    <!-- Teen award cards ek row me -->
+    <div class="ach-grid">
+
+      <div class="ach-card">
+        <div class="ach-year">2026</div>
+        <span class="ach-cat-badge professional">Professional</span>
+        <div class="ach-title">Letter of Appreciation</div>
+        <div class="ach-inst">NCFL-IFSO, Delhi Police / Ministry of Home Affairs</div>
+        <p class="ach-desc">Awarded for direct technical contribution to live operational cybercrime investigations — one of select interns commended for production-level forensic impact on active case files.</p>
+        <div class="ach-proof">Proves: Real-world law enforcement deployment &amp; forensic impact</div>
+        <img src="ach-loa.jpg" alt="Letter of Appreciation" class="ach-img-slot" onclick="openImage('ach-loa.jpg')" />
+      </div>
+
+      <div class="ach-card">
+        <div class="ach-year">2025</div>
+        <span class="ach-cat-badge professional">Professional</span>
+        <div class="ach-title">Best Excellence Award</div>
+        <div class="ach-inst">Digipodium</div>
+        <p class="ach-desc">Recognised for outstanding contribution in cybersecurity — awarded for demonstrating exceptional skill and real-world impact in the field.</p>
+        <div class="ach-proof">Proves: Industry recognition beyond academics</div>
+        <div class="ach-img-slot">Attach Award Image</div>
+      </div>
+
+      <div class="ach-card">
+        <div class="ach-year">2021 – 2023</div>
+        <span class="ach-cat-badge academic">Academic</span>
+        <div class="ach-title">Student Head</div>
+        <div class="ach-inst">School Institution</div>
+        <p class="ach-desc">Led institutional operations and cross-team coordination, managing responsibilities across multiple years and building strong leadership and communication foundations.</p>
+        <div class="ach-proof">Proves: Leadership, coordination, and communication</div>
+        <div class="ach-img-slot">Attach Image</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     CONTACT SECTION
+     Top par CTA bar, fir 2-column layout:
+     left = form, right = contact info panel.
+     ===================================================== -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Let's Build Something Secure.</h2>
+    <div class="section-divider"></div>
+
+    <!-- Form ke upar CTA bar -->
+    <div class="mid-cta-bar">
+      <div class="mid-cta-text">
+        <h3>Open to SOC, NOC, Forensics &amp; Security Analyst roles</h3>
+        <p>Based in Lucknow, India — available for remote and on-site opportunities.</p>
+      </div>
+      <div class="mid-cta-actions">
+        <a href="resume.pdf" download class="nav-resume-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Resume
+        </a>
+        <a href="mailto:shahiraunak8@gmail.com" class="btn-outline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email Directly
+        </a>
+        <a href="https://linkedin.com/in/raunak-raj-9227732aa" target="_blank" class="btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+
+    <!-- Two-column layout: form left, info right -->
+    <div class="contact-grid">
+      <!-- LEFT: Contact form -->
+      <div>
+        <!-- Har form-group = label + input -->
+        <div class="form-group"><label>Full Name</label><input type="text" id="cf-name" placeholder="Your full name" /></div>
+        <div class="form-group"><label>Email Address</label><input type="email" id="cf-email" placeholder="your@email.com" /></div>
+        <div class="form-group"><label>Subject</label><input type="text" id="cf-subject" placeholder="What's this about?" /></div>
+        <div class="form-group"><label>Message</label><textarea id="cf-message" placeholder="Tell me about the opportunity or project..."></textarea></div>
+        <!-- onclick="sendMessage()" script.js me function ko call karta hai -->
+        <button class="send-btn" onclick="sendMessage()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Send Message
+        </button>
+        <!-- Ye div default hidden hai; JavaScript success/error par dikhata hai -->
+        <div class="form-status" id="form-status"></div>
+      </div>
+
+      <!-- RIGHT: Contact info panel -->
+      <div class="contact-info-panel">
+        <div class="cip-title">Contact Information</div>
+        <div class="cip-sub">Responding within 24 hours — reach out through any channel.</div>
+        <!-- Har contact item: icon + label + value -->
+        <div class="cip-item">
+          <div class="cip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><div class="cip-label">Email</div><div class="cip-val"><a href="mailto:shahiraunak8@gmail.com">shahiraunak8@gmail.com</a></div></div>
+        </div>
+        <div class="cip-item">
+          <div class="cip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><div class="cip-label">Phone</div><div class="cip-val">+91 96935 17759</div></div>
+        </div>
+        <div class="cip-item">
+          <div class="cip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="cip-label">Location</div><div class="cip-val">Lucknow, India</div></div>
+        </div>
+        <div class="cip-item">
+          <div class="cip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+          <div><div class="cip-label">LinkedIn</div><div class="cip-val"><a href="https://linkedin.com/in/raunak-raj-9227732aa" target="_blank">linkedin.com/in/raunak-raj</a></div></div>
+        </div>
+        <div class="cip-item">
+          <div class="cip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
+          <div><div class="cip-label">GitHub</div><div class="cip-val"><a href="https://github.com/Roxie79-s" target="_blank">github.com/Roxie79-s</a></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+<footer>
+  <div class="footer-name">Raunak Raj</div>
+  <div class="footer-tagline">Security Analyst by Discipline. Forensic Builder by Instinct.</div>
+  <div class="footer-roles">Cybersecurity Analyst &nbsp;·&nbsp; Digital Forensics &nbsp;·&nbsp; SOC Operations</div>
+  <div class="footer-links">
+    <a href="https://github.com/Roxie79-s" target="_blank" class="footer-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      GitHub
+    </a>
+    <a href="https://linkedin.com/in/raunak-raj-9227732aa" target="_blank" class="footer-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+    <a href="mailto:shahiraunak8@gmail.com" class="footer-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Email
+    </a>
+  </div>
+  <div class="footer-copy">© 2026 Raunak Raj. All rights reserved.</div>
+</footer>
+
+
+<!-- 
+  JavaScript ko sabse LAST me load karo (saara HTML load hone ke baad)
+  taaki ye saare elements ko dhoond sake.
+  
+  NOTE: Pehle iske andar inline JavaScript likha tha jo GALAT tha.
+  <script src="..."> tag ke andar code likhne se wo CHALTA NAHI hai.
+  Isliye saara JavaScript ab sirf script.js file me hai (jaisa hona chahiye).
+-->
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,2234 @@
+/* ============================================================
+   style.css — ALL the visual styling for Raunak's portfolio
+   
+   CSS = Cascading Style Sheets
+   It tells the browser HOW things should LOOK.
+   
+   HOW TO READ CSS:
+   .class-name {        ← This targets any element with class="class-name"
+     property: value;   ← This sets one visual rule
+   }
+   
+   #id-name {           ← This targets the ONE element with id="id-name"
+     property: value;
+   }
+   ============================================================ */
+
+
+/* ============================================================
+   CSS VARIABLES (Saved Colors & Values)
+   Think of these like named constants.
+   Define once at the top, use everywhere with var(--name).
+   To change the whole site's green color: just edit --green here!
+   ============================================================ */
+:root {
+  --green:       #2e5c3f;   /* dark forest green — main brand color */
+  --green-mid:   #3d6b4f;   /* slightly lighter green */
+  --green-light: #5a8a6a;   /* light green for hovers */
+  --green-pale:  #e4ede7;   /* very pale green for backgrounds */
+  --gold:        #9e7a1a;   /* gold/amber — accent color */
+  --gold-light:  #c49a2a;   /* lighter gold */
+  --gold-pale:   #f5edcf;   /* very pale gold for backgrounds */
+  --beige:       #f4efe5;   /* warm off-white — hero background */
+  --beige-mid:   #ede5d4;   /* slightly darker beige */
+  --beige-dark:  #e0d5c0;   /* darker beige for skill bar backgrounds */
+  --white:       #ffffff;
+  --black:       #111111;
+  --charcoal:    #222222;   /* near-black for headings */
+  --body:        #3a3a3a;   /* dark gray for body text */
+  --muted:       #5a5a5a;   /* medium gray for secondary text */
+  --subtle:      #888888;   /* light gray for labels */
+  --border:      #cdc4b0;   /* warm gray for borders */
+  --border-soft: #e0d9cc;   /* lighter border */
+  --section-alt: #f8f5ef;   /* slightly off-white for alternate sections */
+}
+
+
+/* ============================================================
+   RESET
+   Browsers add their own default margins/paddings.
+   We remove them so we start from a clean slate.
+   ============================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* padding is included inside the width — easier to calculate sizes */
+}
+
+/* Smooth scrolling when clicking nav anchor links like #about */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base styles for the whole page */
+body {
+  font-family: 'DM Sans', sans-serif; /* loaded from Google Fonts in HTML */
+  background: var(--white);
+  color: var(--body);
+  font-size: 16px;
+  line-height: 1.7; /* space between lines */
+}
+
+/* All heading tags use the serif font */
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', serif;
+  color: var(--black);
+}
+
+/* Remove underline from all links by default */
+a {
+  text-decoration: none;
+}
+
+
+/* ============================================================
+   NAVIGATION BAR
+   position: fixed = sticks to the top even when scrolling
+   z-index: 1000 = sits on top of all other elements
+   ============================================================ */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.98); /* nearly white, very slight transparency */
+  border-bottom: 1.5px solid var(--border-soft);
+  display: flex;            /* puts logo and links side by side */
+  align-items: center;      /* vertically centers both */
+  justify-content: space-between; /* logo pushed left, links pushed right */
+  padding: 0 52px;
+  height: 62px;
+}
+
+/* "RR" logo text on the left */
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 1px;
+}
+
+/* The <ul> containing nav links */
+.nav-links {
+  display: flex;
+  gap: 28px;          /* space between each link */
+  list-style: none;   /* removes bullet points from the list */
+  align-items: center;
+}
+
+/* Each nav link */
+.nav-links a {
+  color: var(--charcoal);
+  font-size: 0.83rem;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  transition: color .2s; /* smoothly animates color change on hover */
+}
+
+.nav-links a:hover {
+  color: var(--green);
+}
+
+/* The green "Resume" button in the nav */
+.nav-resume-btn {
+  background: var(--green);
+  color: var(--white) !important; /* !important overrides .nav-links a color */
+  padding: 7px 18px;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background .2s;
+}
+
+.nav-resume-btn:hover {
+  background: var(--green-light) !important;
+}
+
+/* SVG icon inside nav resume button */
+.nav-resume-btn svg {
+  width: 13px;
+  height: 13px;
+}
+
+
+/* ============================================================
+   UTILITY / REUSABLE CLASSES
+   These small classes are used throughout the whole page.
+   ============================================================ */
+
+/* All sections get top and bottom spacing */
+section {
+  padding: 88px 0;
+}
+
+/* Max-width container — centers content and prevents it going too wide */
+.container {
+  max-width: 1080px;
+  margin: 0 auto;   /* auto left+right = centered horizontally */
+  padding: 0 40px;
+}
+
+/* Small uppercase gold label above section titles (e.g. "WHO I AM") */
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+/* Big section heading (e.g. "About Me", "Projects") */
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+
+/* The short green-to-gold decorative line under section titles */
+.section-divider {
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green), var(--gold));
+  margin-bottom: 44px;
+  border-radius: 2px;
+}
+
+/* Green chip/tag (e.g. "SOC Analyst") */
+.tag-chip {
+  background: var(--green-pale);
+  color: var(--green);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 11px;
+  border-radius: 3px;
+  border: 1px solid rgba(46, 92, 63, .18);
+  letter-spacing: .3px;
+}
+
+/* Gold chip/tag (e.g. "Ongoing", "Production") */
+.gold-chip {
+  background: var(--gold-pale);
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 11px;
+  border-radius: 3px;
+  border: 1px solid rgba(158, 122, 26, .2);
+}
+
+/* ── BUTTON STYLES ── */
+
+/* Solid green button */
+.btn-primary {
+  background: var(--green);
+  color: var(--white);
+  padding: 12px 26px;
+  border-radius: 4px;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background .2s, transform .15s;
+}
+
+.btn-primary:hover {
+  background: var(--green-light);
+  transform: translateY(-1px); /* slight lift effect on hover */
+}
+
+.btn-primary svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* Outlined green button */
+.btn-outline {
+  background: transparent;
+  color: var(--green);
+  padding: 11px 26px;
+  border-radius: 4px;
+  border: 2px solid var(--green);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all .2s;
+}
+
+.btn-outline:hover {
+  background: var(--green);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+
+.btn-outline svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* Ghost button (plain border, gray text) */
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  padding: 10px 22px;
+  border-radius: 4px;
+  border: 1.5px solid var(--border);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: all .2s;
+}
+
+.btn-ghost:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.btn-ghost svg {
+  width: 14px;
+  height: 14px;
+}
+
+
+/* ============================================================
+   HERO SECTION
+   min-height: 100vh = fills the full screen height
+   padding-top: 62px = pushes content below the fixed nav bar
+   ============================================================ */
+#hero {
+  min-height: 100vh;
+  background: var(--beige);
+  display: flex;
+  align-items: center;
+  padding-top: 62px;
+}
+
+/* Two-column grid layout inside hero */
+.hero-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr; /* left column slightly wider */
+  gap: 72px;
+  align-items: center;
+}
+
+/* The small proof badge at the very top of hero */
+.hero-proof-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 6px;
+  margin-bottom: 22px;
+  font-size: 0.8rem;
+  color: var(--body);
+  font-weight: 500;
+}
+
+/* The small green circle/dot inside the proof bar */
+.hero-proof-bar .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%; /* makes it a perfect circle */
+  background: #2e7d32;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* Big name "Raunak Raj" */
+.hero-name {
+  font-size: 3.6rem;
+  font-weight: 700;
+  color: var(--black);
+  line-height: 1.08;
+  margin-bottom: 12px;
+}
+
+/* Subtitle tagline */
+.hero-tagline {
+  font-size: 1.05rem;
+  color: var(--muted);
+  font-weight: 400;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.hero-tagline strong {
+  color: var(--charcoal);
+  font-weight: 600;
+}
+
+/* Row of role tag chips */
+.hero-roles {
+  display: flex;
+  flex-wrap: wrap; /* wraps to next line if screen is too narrow */
+  gap: 7px;
+  margin-bottom: 26px;
+}
+
+/* Row of action buttons */
+.hero-btns {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+/* Row of social links */
+.hero-socials {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Each social link (GitHub, LinkedIn, Email) */
+.hero-social-link {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  padding: 6px 13px;
+  border-radius: 4px;
+  transition: all .2s;
+}
+
+.hero-social-link:hover {
+  border-color: var(--green);
+  color: var(--green);
+  background: var(--green-pale);
+}
+
+.hero-social-link svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* The white "Real-World Proof" card on the right of hero */
+.hero-card {
+  background: var(--white);
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  padding: 32px 28px;
+  box-shadow: 0 6px 32px rgba(0, 0, 0, .07);
+}
+
+/* "REAL-WORLD PROOF" heading inside the card */
+.hero-card-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+/* Container for all proof items */
+.proof-items {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+/* Each row: icon + label + value */
+.proof-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* The square icon box */
+.proof-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  background: var(--green-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* prevents it from shrinking */
+  border: 1px solid rgba(46, 92, 63, .15);
+}
+
+.proof-icon svg {
+  width: 16px;
+  height: 16px;
+  color: var(--green);
+}
+
+/* Small gray uppercase label (e.g. "DEPLOYED AT") */
+.proof-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--subtle);
+  margin-bottom: 1px;
+}
+
+/* The main value text (e.g. "IFSO, Delhi Police") */
+.proof-val {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+/* The "Open To" section at the bottom of the hero card */
+.hero-avail {
+  padding-top: 18px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.hero-avail-label {
+  font-size: 0.69rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--subtle);
+  margin-bottom: 9px;
+}
+
+.hero-avail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Each availability tag chip */
+.avail-tag {
+  background: var(--green-pale);
+  color: var(--green);
+  font-size: 0.71rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 3px;
+  border: 1px solid rgba(46, 92, 63, .18);
+}
+
+
+/* ============================================================
+   FEATURED SECTION
+   The big dark green banner card.
+   ============================================================ */
+#featured {
+  background: var(--white);
+  padding: 56px 0;
+}
+
+.featured-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* The dark green card */
+.featured-card {
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-mid) 60%, #2a4a35 100%);
+  border-radius: 12px;
+  padding: 48px 52px;
+  color: var(--white);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr; /* two columns */
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative circle in the top-right corner (CSS pseudo-element) */
+.featured-card::before {
+  content: '';           /* required for pseudo-elements */
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .05);
+  pointer-events: none;  /* can't be clicked */
+}
+
+/* Small "FEATURED WORK" label */
+.featured-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .65);
+  margin-bottom: 12px;
+}
+
+/* "WinLive Forensic Suite" heading */
+.featured-title {
+  font-size: 1.75rem;
+  color: var(--white);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+/* Subtitle under the title */
+.featured-sub {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, .75);
+  margin-bottom: 24px;
+}
+
+/* Bullet point list on the left */
+.featured-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.featured-bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, .9);
+  line-height: 1.5;
+}
+
+.featured-bullets li svg {
+  width: 15px;
+  height: 15px;
+  color: var(--gold-light);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Right column: stat boxes */
+.featured-right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Each stat box (e.g. "~70% / Reduction in evidence prep time") */
+.feat-stat {
+  background: rgba(255, 255, 255, .1);
+  border-radius: 8px;
+  padding: 18px 20px;
+  border: 1px solid rgba(255, 255, 255, .12);
+}
+
+/* The big number */
+.feat-stat-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--white);
+  display: block;
+}
+
+/* The small label below the number */
+.feat-stat-lbl {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, .65);
+  margin-top: 2px;
+}
+
+/* "See All Projects" button inside featured card */
+.feat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, .15);
+  color: var(--white);
+  border: 1.5px solid rgba(255, 255, 255, .3);
+  padding: 11px 22px;
+  border-radius: 4px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all .2s;
+  cursor: pointer;
+}
+
+.feat-btn:hover {
+  background: rgba(255, 255, 255, .25);
+}
+
+.feat-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+
+/* ============================================================
+   ABOUT SECTION
+   ============================================================ */
+#about {
+  background: var(--section-alt);
+}
+
+/* Two-column layout: photo left, text right */
+.about-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+/* Photo placeholder box */
+.about-photo-placeholder {
+  width: 220px;
+  aspect-ratio: 3/4; /* makes it portrait shaped */
+  background: linear-gradient(145deg, var(--green-pale), var(--beige-mid));
+  border-radius: 8px;
+  border: 2px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--green);
+  font-size: 0.8rem;
+  gap: 10px;
+  text-align: center;
+  padding: 20px;
+}
+
+.about-photo-placeholder svg {
+  width: 40px;
+  height: 40px;
+  opacity: .4;
+}
+
+/* Small vertical accent line above the three pillars */
+.about-accent {
+  width: 3px;
+  height: 44px;
+  background: linear-gradient(180deg, var(--green), var(--gold));
+  border-radius: 2px;
+  margin-bottom: 18px;
+}
+
+/* Three info pillars in a row */
+.about-3col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+/* Each pillar card */
+.about-pillar {
+  background: var(--white);
+  border-radius: 7px;
+  border: 1px solid var(--border-soft);
+  padding: 18px;
+  border-top: 3px solid var(--green); /* green top accent line */
+}
+
+.about-pillar-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 7px;
+}
+
+.about-pillar-text {
+  font-size: 0.83rem;
+  color: var(--body);
+  line-height: 1.6;
+}
+
+/* Main about paragraph */
+.about-body {
+  font-size: 0.93rem;
+  color: var(--body);
+  line-height: 1.85;
+  margin-bottom: 20px;
+}
+
+/* Mission / Vision side-by-side cards */
+.about-mv {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.mv-card {
+  background: var(--white);
+  border-radius: 7px;
+  border: 1px solid var(--border-soft);
+  border-left: 3px solid var(--green); /* green left accent */
+  padding: 18px;
+}
+
+.mv-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.mv-text {
+  font-size: 0.83rem;
+  color: var(--body);
+  line-height: 1.6;
+}
+
+/* Row of quick navigation buttons */
+.about-quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Each quick link button */
+.ql-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  color: var(--charcoal);
+  padding: 7px 14px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all .2s;
+}
+
+.ql-btn:hover {
+  border-color: var(--green);
+  color: var(--green);
+  background: var(--green-pale);
+}
+
+.ql-btn svg {
+  width: 13px;
+  height: 13px;
+}
+
+
+/* ============================================================
+   EXPERIENCE SECTION
+   ============================================================ */
+#experience {
+  background: var(--white);
+}
+
+/* Gold info banner at the top of experience */
+.training-banner {
+  background: var(--gold-pale);
+  border: 1.5px solid rgba(158, 122, 26, .25);
+  border-radius: 8px;
+  padding: 18px 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.training-banner svg {
+  width: 18px;
+  height: 18px;
+  color: var(--gold);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.training-banner-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.training-banner-body {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Timeline wrapper — the ::before creates the vertical green line */
+.exp-timeline {
+  position: relative;
+}
+
+/* The vertical line running down the left side */
+.exp-timeline::before {
+  content: '';
+  position: absolute;
+  left: 17px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--green), var(--gold), transparent);
+}
+
+/* Each timeline entry is indented from the left line */
+.exp-item {
+  padding-left: 52px;
+  margin-bottom: 48px;
+  position: relative;
+}
+
+/* The green circle dot ON the timeline line */
+.exp-dot {
+  position: absolute;
+  left: 9px;
+  top: 7px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--green);
+  border: 3px solid var(--white);
+  box-shadow: 0 0 0 2px var(--green);
+}
+
+/* The experience card itself */
+.exp-card {
+  background: var(--section-alt);
+  border: 1.5px solid var(--border-soft);
+  border-radius: 9px;
+  padding: 28px 32px;
+}
+
+/* Row with badge, date, location */
+.exp-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+/* Green badge (e.g. "Government Internship") */
+.exp-badge {
+  background: var(--green-pale);
+  color: var(--green);
+  font-size: 0.69rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 3px 9px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.exp-duration {
+  font-size: 0.77rem;
+  color: var(--subtle);
+  font-weight: 500;
+}
+
+.exp-location-tag {
+  font-size: 0.77rem;
+  color: var(--subtle);
+}
+
+/* Job title */
+.exp-role {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 3px;
+}
+
+/* Company name in green */
+.exp-company {
+  font-size: 0.9rem;
+  color: var(--green);
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+/* Bullet point list of responsibilities */
+.exp-list {
+  list-style: none;
+  margin-bottom: 18px;
+}
+
+.exp-list li {
+  font-size: 0.87rem;
+  color: var(--body);
+  padding: 5px 0 5px 18px;
+  position: relative;
+  line-height: 1.6;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.exp-list li:last-child {
+  border-bottom: none;
+}
+
+/* The "—" dash before each bullet, created with CSS */
+.exp-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: 700;
+}
+
+/* Gold achievements box inside each experience card */
+.exp-ach-block {
+  background: var(--white);
+  border-radius: 6px;
+  border: 1px solid var(--border-soft);
+  border-left: 4px solid var(--gold); /* gold left border accent */
+  padding: 18px 20px;
+  margin-top: 14px;
+}
+
+/* "KEY ACHIEVEMENTS" heading */
+.exp-ach-title {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.exp-ach-title svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* Achievement bullet list */
+.exp-ach-list {
+  list-style: none;
+}
+
+.exp-ach-list li {
+  font-size: 0.88rem;
+  color: var(--charcoal);
+  font-weight: 600;
+  padding: 4px 0 4px 18px;
+  position: relative;
+  line-height: 1.5;
+}
+
+/* The gold star before each achievement */
+.exp-ach-list li::before {
+  content: '★';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 0.68rem;
+  top: 7px;
+}
+
+
+/* ============================================================
+   EDUCATION SECTION
+   ============================================================ */
+#education {
+  background: var(--section-alt);
+}
+
+/* The education card — horizontal layout */
+.edu-compact {
+  background: var(--white);
+  border: 1.5px solid var(--border-soft);
+  border-radius: 9px;
+  padding: 32px 36px;
+  display: flex;
+  gap: 36px;
+  align-items: flex-start;
+}
+
+/* Left column: just the icon */
+.edu-icon-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* Square icon box */
+.edu-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  background: var(--green-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(46, 92, 63, .18);
+}
+
+.edu-icon-box svg {
+  width: 24px;
+  height: 24px;
+  color: var(--green);
+}
+
+/* Middle column: degree info */
+.edu-main {
+  flex: 1; /* takes up all remaining space */
+}
+
+.edu-degree {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 2px;
+}
+
+.edu-spec {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.edu-inst {
+  font-size: 0.9rem;
+  color: var(--green);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.edu-meta-row {
+  font-size: 0.8rem;
+  color: var(--subtle);
+  margin-bottom: 18px;
+}
+
+/* Bullet points for education details */
+.edu-points {
+  list-style: none;
+}
+
+.edu-points li {
+  font-size: 0.87rem;
+  color: var(--body);
+  padding: 5px 0 5px 18px;
+  position: relative;
+  line-height: 1.55;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.edu-points li:last-child {
+  border-bottom: none;
+}
+
+/* Small diamond ◆ before each point */
+.edu-points li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-size: 0.5rem;
+  top: 9px;
+}
+
+/* Right column: stat boxes */
+.edu-stats-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 140px;
+}
+
+/* Each stat box */
+.edu-stat-box {
+  background: var(--section-alt);
+  border-radius: 7px;
+  border: 1px solid var(--border-soft);
+  padding: 16px;
+  text-align: center;
+}
+
+/* The big number/value */
+.edu-stat-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--green);
+  display: block;
+}
+
+.edu-stat-lbl {
+  font-size: 0.72rem;
+  color: var(--subtle);
+  margin-top: 3px;
+}
+
+
+/* ============================================================
+   PROJECTS SECTION
+   ============================================================ */
+#projects {
+  background: var(--white);
+}
+
+/* Stack of project cards */
+.proj-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Each project card */
+.proj-card {
+  background: var(--section-alt);
+  border: 1.5px solid var(--border-soft);
+  border-radius: 10px;
+  overflow: hidden; /* clips the top color bar to the border-radius */
+}
+
+/* The thin gradient stripe at the top of each project card */
+.proj-card-top {
+  height: 4px;
+  background: linear-gradient(90deg, var(--green), var(--gold));
+}
+
+.proj-card-body {
+  padding: 32px 36px;
+}
+
+/* Badge row at the top */
+.proj-badges {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+/* Title row: title+subtitle on left, GitHub button on right */
+.proj-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+/* Project title */
+.proj-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 4px;
+}
+
+/* Project subtitle (tech stack, date) */
+.proj-sub {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+/* GitHub link button area */
+.proj-links {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Small GitHub button */
+.proj-link-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  color: var(--charcoal);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.77rem;
+  font-weight: 500;
+  transition: all .2s;
+}
+
+.proj-link-btn:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.proj-link-btn svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Two-column layout inside project: Problem Solved | Key Outcomes */
+.proj-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+/* "Problem Solved" box */
+.proj-problem {
+  background: var(--white);
+  border-radius: 6px;
+  border: 1px solid var(--border-soft);
+  padding: 16px 18px;
+}
+
+.proj-problem-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 7px;
+}
+
+.proj-problem-text {
+  font-size: 0.85rem;
+  color: var(--body);
+  line-height: 1.65;
+}
+
+/* "Key Outcomes" box */
+.proj-outcomes-block {
+  background: var(--white);
+  border-radius: 6px;
+  border: 1px solid var(--border-soft);
+  padding: 16px 18px;
+}
+
+.proj-outcomes-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 9px;
+}
+
+.proj-outcomes-list {
+  list-style: none;
+}
+
+.proj-outcomes-list li {
+  font-size: 0.84rem;
+  color: var(--body);
+  padding: 3px 0 3px 16px;
+  position: relative;
+  line-height: 1.5;
+}
+
+/* → arrow before each outcome */
+.proj-outcomes-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+/* "My Contribution" green box */
+.proj-contribution {
+  background: var(--green-pale);
+  border-radius: 6px;
+  border: 1px solid rgba(46, 92, 63, .15);
+  padding: 14px 18px;
+  margin-top: 14px;
+}
+
+.proj-contribution-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+
+.proj-contribution-text {
+  font-size: 0.84rem;
+  color: var(--charcoal);
+  line-height: 1.6;
+}
+
+/* Row of technology chips at bottom of project */
+.proj-tech-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+/* Each tech chip (e.g. "Python", "React") */
+.tech-chip {
+  background: var(--white);
+  border: 1px solid var(--border);
+  color: var(--charcoal);
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 3px;
+}
+
+
+/* ============================================================
+   SKILLS SECTION
+   ============================================================ */
+#skills {
+  background: var(--section-alt);
+}
+
+/* 2-column grid of skill cards */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+/* Each skill category card */
+.skill-cat {
+  background: var(--white);
+  border-radius: 9px;
+  border: 1.5px solid var(--border-soft);
+  padding: 26px;
+  transition: box-shadow .2s;
+}
+
+.skill-cat:hover {
+  box-shadow: 0 4px 18px rgba(0, 0, 0, .07);
+}
+
+/* Header row with icon + name + proficiency level */
+.skill-cat-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+/* Square icon box on the left */
+.skill-cat-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 7px;
+  background: var(--green-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(46, 92, 63, .15);
+  flex-shrink: 0;
+}
+
+.skill-cat-icon svg {
+  width: 17px;
+  height: 17px;
+  color: var(--green);
+}
+
+/* Skill category name (e.g. "SOC / Blue Team") */
+.skill-cat-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.97rem;
+  color: var(--black);
+  font-weight: 600;
+}
+
+/* Proficiency percentage in gold */
+.skill-cat-level {
+  font-size: 0.7rem;
+  color: var(--gold);
+  font-weight: 600;
+  margin-top: 1px;
+}
+
+/* Wrapper for each skill bar */
+.skill-bar-wrap {
+  margin-bottom: 11px;
+}
+
+/* Row with skill name on left, % on right */
+.skill-bar-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.skill-bar-name {
+  font-size: 0.79rem;
+  color: var(--charcoal);
+  font-weight: 500;
+}
+
+.skill-bar-pct {
+  font-size: 0.73rem;
+  color: var(--subtle);
+}
+
+/* Gray background track of the skill bar */
+.skill-bar-bg {
+  background: var(--beige-dark);
+  border-radius: 3px;
+  height: 4px;
+}
+
+/* The colored fill of the skill bar — width is set inline in HTML */
+.skill-bar-fill {
+  height: 4px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--green), var(--gold));
+}
+
+/* Small skill tags below the bars */
+.skill-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 12px;
+}
+
+.skill-tag {
+  background: var(--section-alt);
+  border: 1px solid var(--border-soft);
+  color: var(--body);
+  font-size: 0.71rem;
+  padding: 3px 9px;
+  border-radius: 3px;
+}
+
+
+/* ============================================================
+   CERTIFICATIONS SECTION
+   ============================================================ */
+#certifications {
+  background: var(--white);
+}
+
+/* Stack of cert groups */
+.cert-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Group label with auto-extending line to the right */
+.cert-group-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* The line extending after the label text */
+.cert-group-label::after {
+  content: '';
+  flex: 1; /* grows to fill remaining space */
+  height: 1px;
+  background: var(--border-soft);
+}
+
+/* Two-column grid of cert cards */
+/* Two-column grid of cert cards */
+.cert-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+/* Each certification card */
+.cert-card {
+  background: var(--section-alt);
+  border: 1.5px solid var(--border-soft);
+  border-radius: 8px;
+  padding: 20px 22px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: box-shadow .2s;
+}
+
+.cert-card:hover {
+  box-shadow: 0 3px 14px rgba(0, 0, 0, .07);
+}
+
+/* Square icon box on the left */
+.cert-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 7px;
+  background: var(--green-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(46, 92, 63, .18);
+}
+
+.cert-icon svg {
+  width: 20px;
+  height: 20px;
+  color: var(--green);
+}
+
+/* Cert title */
+.cert-name {
+  font-size: 0.91rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 3px;
+}
+
+/* Issuing organization */
+.cert-issuer {
+  font-size: 0.78rem;
+  color: var(--green);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+/* Why this cert matters */
+.cert-why {
+  font-size: 0.77rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Dashed placeholder box where you can attach cert image (no image yet = text placeholder) */
+.cert-img-slot {
+  margin-top: 10px;
+  width: 100%;
+  min-height: 140px;   /* badi ki gayi taaki image clearly dikhe, fixed nahi hai isliye content ke hisab se badh sakti hai */
+  background: var(--white);
+  border-radius: 4px;
+  border: 1px dashed var(--border); /* dashed = placeholder style */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  color: var(--subtle);
+}
+
+/* Jab cert-img-slot class ek <img> tag par lagi ho (real certificate image add karne ke baad)
+   tab ye rule image ko poori box me sahi se fit karta hai — chhoti thumbnail nahi dikhegi */
+img.cert-img-slot {
+  height: 220px;          /* fixed height nahi, generous height taaki poora certificate dikhe */
+  object-fit: contain;    /* poora certificate dikhata hai bina crop kiye */
+  object-position: center;
+  background: var(--white);
+  cursor: pointer;        /* hand cursor dikhata hai ki ye clickable hai */
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+/* Hover par halka zoom effect, taaki pata chale image clickable hai */
+img.cert-img-slot:hover {
+  opacity: 0.9;
+  transform: scale(1.015);
+}
+
+
+/* ============================================================
+   ACHIEVEMENTS SECTION
+   ============================================================ */
+#achievements {
+  background: var(--section-alt);
+}
+
+/* Row of big stat numbers */
+.ach-stats-row {
+  display: flex;
+  gap: 36px;
+  margin-bottom: 44px;
+  flex-wrap: wrap;
+}
+
+.ach-stat {
+  text-align: center;
+}
+
+/* Big stat number */
+.ach-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--green);
+  display: block;
+}
+
+.ach-stat-lbl {
+  font-size: 0.76rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* Three achievement cards in a row */
+.ach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Each award card */
+.ach-card {
+  background: var(--white);
+  border-radius: 9px;
+  border: 1.5px solid var(--border-soft);
+  padding: 26px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gold-to-green line at top of each achievement card */
+.ach-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--green));
+}
+
+/* Year label (e.g. "2026") */
+.ach-year {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 9px;
+}
+
+/* "Professional" or "Academic" badge */
+.ach-cat-badge {
+  font-size: 0.67rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+/* Green badge for professional achievements */
+.ach-cat-badge.professional {
+  background: rgba(46, 92, 63, .1);
+  color: var(--green);
+}
+
+/* Gold badge for academic achievements */
+.ach-cat-badge.academic {
+  background: var(--gold-pale);
+  color: var(--gold);
+}
+
+/* Achievement title */
+.ach-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 4px;
+}
+
+/* Organization/institution in green */
+.ach-inst {
+  font-size: 0.8rem;
+  color: var(--green);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.ach-desc {
+  font-size: 0.82rem;
+  color: var(--body);
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+/* "Proves: ..." italic gold text */
+.ach-proof {
+  font-size: 0.77rem;
+  color: var(--gold);
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* Dashed placeholder for attaching award image (no image yet = text placeholder) */
+.ach-img-slot {
+  margin-top: 14px;
+  width: 100%;
+  min-height: 130px;   /* badi ki gayi taaki image clearly dikhe */
+  background: var(--section-alt);
+  border-radius: 4px;
+  border: 1px dashed var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.71rem;
+  color: var(--subtle);
+}
+
+/* Jab ach-img-slot class ek <img> tag par lagi ho (real award image add karne ke baad)
+   tab ye rule image ko poori box me sahi se fit karta hai */
+img.ach-img-slot {
+  height: 200px;
+  object-fit: contain;
+  object-position: center;
+  background: var(--section-alt);
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+img.ach-img-slot:hover {
+  opacity: 0.9;
+  transform: scale(1.015);
+}
+
+
+/* ============================================================
+   CONTACT SECTION
+   ============================================================ */
+#contact {
+  background: var(--beige);
+}
+
+/* CTA bar above the form */
+.mid-cta-bar {
+  background: var(--white);
+  border-radius: 9px;
+  border: 1.5px solid var(--border-soft);
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 52px;
+  flex-wrap: wrap;
+}
+
+.mid-cta-text h3 {
+  font-size: 1.1rem;
+  color: var(--black);
+  margin-bottom: 4px;
+}
+
+.mid-cta-text p {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.mid-cta-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Two-column layout: form left, info right */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+}
+
+/* Each form field group (label + input) */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-bottom: 6px;
+  letter-spacing: .4px;
+}
+
+/* Text input and textarea styling */
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 11px 14px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  color: var(--black);
+  outline: none;
+  transition: border-color .2s;
+}
+
+/* Highlight border when input is focused (clicked on) */
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--green);
+}
+
+/* Textarea specific */
+.form-group textarea {
+  resize: vertical; /* user can only resize up/down */
+  min-height: 120px;
+}
+
+/* "Send Message" button */
+.send-btn {
+  background: var(--green);
+  color: var(--white);
+  border: none;
+  padding: 13px 32px;
+  border-radius: 4px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  transition: background .2s, transform .15s;
+}
+
+.send-btn:hover {
+  background: var(--green-light);
+  transform: translateY(-1px);
+}
+
+.send-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Form status message — hidden by default, shown by JavaScript */
+.form-status {
+  padding: 11px 14px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 10px;
+  display: none; /* hidden until JS adds .success or .error class */
+}
+
+/* Green success state */
+.form-status.success {
+  background: rgba(46, 92, 63, .1);
+  color: var(--green);
+  border: 1px solid rgba(46, 92, 63, .25);
+}
+
+/* Red error state */
+.form-status.error {
+  background: rgba(180, 40, 40, .07);
+  color: #b02020;
+  border: 1px solid rgba(180, 40, 40, .2);
+}
+
+/* Right side contact info panel */
+.contact-info-panel {
+  background: var(--white);
+  border-radius: 9px;
+  border: 1.5px solid var(--border-soft);
+  padding: 30px;
+}
+
+.cip-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 4px;
+}
+
+.cip-sub {
+  font-size: 0.83rem;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+/* Each contact info row */
+.cip-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+/* Square icon box */
+.cip-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 7px;
+  background: var(--green-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(46, 92, 63, .18);
+}
+
+.cip-icon svg {
+  width: 16px;
+  height: 16px;
+  color: var(--green);
+}
+
+/* Small gray uppercase label (e.g. "EMAIL") */
+.cip-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--subtle);
+  margin-bottom: 2px;
+}
+
+/* Value text */
+.cip-val {
+  font-size: 0.85rem;
+  color: var(--charcoal);
+  font-weight: 500;
+}
+
+.cip-val a {
+  color: var(--green);
+}
+
+.cip-val a:hover {
+  text-decoration: underline;
+}
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--black);
+  color: var(--white);
+  padding: 40px 0;
+  text-align: center;
+}
+
+.footer-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  margin-bottom: 4px;
+}
+
+.footer-tagline {
+  font-size: 0.8rem;
+  color: #888;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.footer-roles {
+  font-size: 0.77rem;
+  color: #666;
+  margin-bottom: 18px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.footer-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #888;
+  font-size: 0.79rem;
+  font-weight: 500;
+  transition: color .2s;
+}
+
+.footer-link:hover {
+  color: var(--white);
+}
+
+.footer-link svg {
+  width: 14px;
+  height: 14px;
+}
+
+.footer-copy {
+  font-size: 0.7rem;
+  color: #444;
+  margin-top: 18px;
+}
+
+
+/* ============================================================
+   MOBILE RESPONSIVE STYLES
+   @media = "only apply these rules when screen width is ≤ 920px"
+   This makes the site look good on phones and tablets.
+   ============================================================ */
+@media (max-width: 920px) {
+
+  /* Stack hero into a single column on mobile */
+  .hero-inner,
+  .about-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  /* Smaller name on mobile */
+  .hero-name {
+    font-size: 2.7rem;
+  }
+
+  /* Hide nav links on mobile (no hamburger menu added here) */
+  .nav-links {
+    display: none;
+  }
+
+  /* Smaller padding on mobile */
+  nav {
+    padding: 0 18px;
+  }
+
+  .container {
+    padding: 0 18px;
+  }
+
+  /* Smaller section spacing on mobile */
+  section {
+    padding: 64px 0;
+  }
+
+  /* Featured card stacks vertically */
+  .featured-card {
+    display: block;
+    padding: 32px 24px;
+  }
+
+  .featured-right {
+    margin-top: 24px;
+  }
+
+  /* Education card stacks vertically */
+  .edu-compact {
+    flex-direction: column;
+  }
+
+  .edu-stats-col {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .edu-stat-box {
+    min-width: 120px;
+  }
+
+  /* All 2-column grids become 1-column on mobile */
+  .proj-grid-2col,
+  .skills-grid,
+  .cert-row,
+  .ach-grid,
+  .contact-grid {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+
+/* ============================================================
+   CONTENT FLEXIBILITY FIX
+   
+   YE FIX KYU ZAROORI THA:
+   Pehle, flex aur grid containers ke andar text items ki
+   default "min-width" / "min-height" automatically "auto" set
+   ho jaati thi jo content ko squeeze/hide kar deti thi jab
+   user koi card ya box me extra text add/edit karta tha.
+   
+   Ye rules sabhi text-containing cards/boxes ko batate hain ki
+   "jitna bhi content ho, poora dikhao, kabhi cut/hide mat karo".
+   Isse koi bhi section me (About, Experience, Projects, Skills,
+   Certifications, Achievements, Contact) jitna chaho utna content
+   add ya edit kar sakte ho aur wo hamesha pura dikhega.
+   ============================================================ */
+
+/* Flex items (jaise about-pillar, mv-card, proj-problem, cert-card, etc.)
+   ko force karta hai ki apne content ke hisab se hamesha grow karein */
+.about-pillar,
+.mv-card,
+.proj-problem,
+.proj-outcomes-block,
+.proj-contribution,
+.exp-card,
+.exp-ach-block,
+.cert-card,
+.ach-card,
+.skill-cat,
+.edu-main,
+.hero-card,
+.featured-card,
+.contact-info-panel {
+  min-width: 0;     /* flex/grid item ko shrink hone se content hide hone se rokta hai */
+  height: auto;     /* hamesha content ke hisab se height adjust hogi, kabhi fix nahi */
+}
+
+/* Grid aur flex containers ke andar text wrap properly ho,
+   lamba word bhi box ke bahar na jaye aur na hi cut ho */
+.about-pillar-text,
+.mv-text,
+.proj-problem-text,
+.proj-contribution-text,
+.exp-list li,
+.exp-ach-list li,
+.cert-why,
+.ach-desc,
+.cip-val,
+.edu-points li {
+  overflow-wrap: break-word;  /* lamba word bhi wrap ho jayega, overflow nahi karega */
+  word-break: break-word;
+}
+
+/* Three-column "about" pillars aur Mission/Vision cards ko
+   force karta hai ki unki height auto rahe, content ke hisab se badhe */
+.about-3col,
+.about-mv {
+  align-items: stretch; /* sab cards same row me ek jaisi height lenge, content ke hisab se */
+}
+
+
+.form-group textarea {
+  min-height: 120px;
+  height: auto;
+  overflow-y: auto;  
+}
